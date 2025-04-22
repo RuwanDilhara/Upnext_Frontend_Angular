@@ -1,0 +1,104 @@
+<div class="post bg-dark bg-black max:h-100 p-2">
+    <div class="header flex justify-between bg-amber-500 w-full h-16 items-center p-4 rounded">
+        <div class="user_details flex space-x-3 items-center ">
+            <img class="w-10" src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" alt="image">
+            <h5 class="font-bold">Ruwan Dilhara</h5>
+        </div>
+        <div class="option flex font-bold">
+            <button type="button">Follow +</button>
+        </div>
+    </div>
+    <div class="title w-full p-4 ">
+        <p class="text-white">
+            s voluptatem deserunt omnis ad alias quibusdam facere. Voluptate, voluptatem ab. Perferendis hic ex iste.
+        </p>
+    </div>
+    <div class="content">
+
+        
+        <div class="grid grid-cols-3 gap-2 p-4">
+            <ng-container *ngFor="let image of images.slice(0, 5); let i = index">
+              <img alt=""
+                [src]="image"
+                (click)="openPreview(i)"
+                class="rounded-md object-cover h-40 w-full cursor-pointer hover:opacity-90 transition duration-200"
+                loading="lazy"
+              />
+            </ng-container>
+            <div *ngIf="images.length > 5" class="relative">
+              <img alt=""
+                [src]="images[5]"
+                class="rounded-md object-cover h-40 w-full brightness-50 cursor-pointer"
+                (click)="openPreview(5)"
+              />
+              <div class="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold">
+                +{{ images.length - 5 }}
+              </div>
+            </div>
+          </div>
+          
+          <!-- Preview Modal -->
+          <div
+            *ngIf="previewIndex !== null"
+            class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+            (click)="closePreview()"
+          >
+            <div class="relative w-full max-w-3xl p-2" (click)="$event.stopPropagation()">
+              <img alt=""
+                [src]="images[previewIndex!]"
+                class="w-full h-[80vh] object-contain rounded shadow"
+              />
+              <!-- Close Button -->
+              <button
+                class="absolute top-2 right-2 bg-white text-black rounded-full p-1"
+                (click)="closePreview()"
+              >
+                ✖
+              </button>
+          
+              <!-- Prev Button -->
+              <button
+                class="absolute left-2 top-1/2 transform -translate-y-1/2 text-white text-3xl"
+                (click)="previousImage()"
+                *ngIf="previewIndex! > 0"
+              >
+                ‹
+              </button>
+          
+              <!-- Next Button -->
+              <button
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-3xl"
+                (click)="nextImage()"
+                *ngIf="previewIndex! < images.length - 1"
+              >
+                ›
+              </button>
+            </div>
+          </div>
+          
+
+
+
+    </div>
+
+
+
+</div>
+
+<div class="bottom-section flex justify-between items-center p-4">
+    <div class="left flex space-x-5">
+        <button type="button" title="Like" class="text-white p-1 px-2 hover:bg-blue-300 rounded flex gap-2">2.1k<svg
+                class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z" />
+            </svg>
+        </button>
+        <button type="button" class="text-white hover:underline">Comment</button>
+        <button type="button" class="text-white hover:underline">Share</button>
+    </div>
+    <div class="right">
+        <p class="text-white hover:underline">10k Likes</p>
+
+    </div>
+</div>
